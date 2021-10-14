@@ -57,12 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnPhoto = (Button) findViewById(R.id.btnPhoto);
 
-        btnPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
 
     }
