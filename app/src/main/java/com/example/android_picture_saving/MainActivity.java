@@ -21,22 +21,25 @@ import com.example.android_picture_saving.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RESULT_OK = 0;
+    private static int RESULT_OK = 0;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private ImageView imageView;
+    private Button btnPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         setSupportActionBar(binding.toolbar);
 
@@ -51,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        btnPhoto = (Button) findViewById(R.id.btnPhoto);
+
+        btnPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -82,11 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    // Start implementing photo takting
+    // ### Start implementing photo taking ###
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static int REQUEST_IMAGE_CAPTURE = 0;
+    // static final int RESULT_OK = 0;
 
     private void dispatchTakePictureIntent() {
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -95,16 +111,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void startActivityForResult(Intent takePictureIntent, int requestImageCapture) {
-
-
-    }
+    // public void startActivityForResult(Intent takePictureIntent, int requestImageCapture) {  }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
@@ -113,5 +125,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 }
